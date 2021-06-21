@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<context:component-scan base-package="com.icss.id"></context:component-scan>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+<!--    默认前端控制器是连接所有资源的（除过jsp），js文件404；要js文件是交给tomcat处理的-->
+<!--    告诉springmvc自己映射的请求就自己处理，不能处理的请求直接交给tomcat-->
+    <mvc:default-servlet-handler/>
+<!--    静态资源能访问，动态映射的请求就不行-->
+<!--    springmvc可以保证动态请求和静态请求都鞥访问-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+</beans>
